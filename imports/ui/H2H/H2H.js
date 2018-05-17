@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
+import { Tasks } from '../../api/methods';
  
 // Task component - represents a single todo item
 export default class H2H extends Component {
- render() {
-   return (
-      <div></div>
-    );
-  }
-}
+
+  componentDidMount(){
+
+    Meteor.call('tournaments.info',(err,res) => {
+      if (err)      throw err;
+     else  console.log(res);  
+    });
+     
+   }
+ 
+  render() {
+    return (
+       <div></div>
+     );
+   }
+ }

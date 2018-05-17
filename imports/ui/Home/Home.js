@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Tasks } from '../../api/tasks.js';
+import { Tasks } from '../../api/methods';
  
 // Task component - represents a single todo item
 export default class Home extends Component {
@@ -9,9 +9,7 @@ export default class Home extends Component {
 
    Meteor.call('tournaments.info',(err,res) => {
      if (err)      throw err;
-    else{      
-     console.log(res);    
-    }
+    else  console.log(res);  
    });
     
   }
