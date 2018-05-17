@@ -17,7 +17,15 @@ if (Meteor.isServer) {
       } catch (error) {
         console.log(error);
       }
-    }
+    },
+    'tournament.live_standings' () {
+      try {
+        let result = HTTP.get('http://api.sportradar.us/soccer-t3/am/en/tournaments/sr:tournament:241/live_standings.json?api_key=95vqfkug68ytss77qbwskwta').data;
+        return result;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   });
 
 }

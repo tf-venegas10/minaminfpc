@@ -7,8 +7,8 @@ export default class Home extends Component {
 
   componentDidMount(){
 
-   Meteor.call('tournaments.info',(err,res) => {
-     if (err)      throw err;
+   Meteor.call('tournament.live_standings',(err,res) => {
+     if (err) throw err;
     else  console.log(res);  
    });
     
