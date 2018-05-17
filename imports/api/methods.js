@@ -26,6 +26,14 @@ if (Meteor.isServer) {
         console.log(error);
       }
     },
+    'tournament.leaders' () {
+      try {
+        let result = HTTP.get('http://api.sportradar.us/soccer-t3/am/en/tournaments/sr:tournament:241/leaders.json?api_key=95vqfkug68ytss77qbwskwta').data;
+        return result;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   });
 
 }
