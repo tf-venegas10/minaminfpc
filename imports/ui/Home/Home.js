@@ -15,17 +15,19 @@ export default class Home extends Component {
   }
 
   componentDidMount(){
-
    Meteor.call('tournament.live_standings',(err,res) => {
      if (err) throw err;
-    else  console.log(res);  
-   });
-    
+     this.setState ({
+       table: res.standings[0].groups[0].team_standings,
+       away: res.standings[2].groups[0].team_standings,
+       home: res.standings[1].groups[0].team_standings,
+     }); 
+   });   
   }
 
  render() {
    return (
-      <div></div>
+      <div className="home container"></div>
     );
   }
 }
