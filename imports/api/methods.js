@@ -46,6 +46,33 @@ if (Meteor.isServer) {
         console.log(error);
       }
     },
+    'tournament.schedule' () {
+      try {
+        let url = "http://api.sportradar.us/soccer-t3/am/en/tournaments/sr:tournament:241/results.json?api_key=95vqfkug68ytss77qbwskwta";
+        let result = HTTP.get(url).data;
+        return result;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    'tournament.team_profile' (team) {
+      try {
+        let url = "https://api.sportradar.us/soccer-t3/am/en/teams/" + team + "/profile.json?api_key=95vqfkug68ytss77qbwskwta";
+        let result = HTTP.get(url).data;
+        return result;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    'tournament.team_statistics' (team) {
+      try {
+        let url = "https://api.sportradar.us/soccer-t3/am/en/tournaments/sr:tournament:241/teams/" + team + "/statistics.json?api_key=95vqfkug68ytss77qbwskwta";
+        let result = HTTP.get(url).data;
+        return result;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   });
 
 }

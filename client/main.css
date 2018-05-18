@@ -2,5 +2,29 @@
 .table-logo {
   max-width: 30px;
   max-height: 30px;
-  padding-right: 5px;
+  padding-right: 10px;
+}
+
+.table-options {
+  font-size: 25px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.cells path {
+  fill: none;
+  pointer-events: all;
+}
+
+.cells :hover circle {
+  fill: red;
 }
