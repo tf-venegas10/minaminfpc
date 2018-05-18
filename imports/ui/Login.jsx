@@ -162,7 +162,7 @@ class Login extends Component {
 
   render() {
     let show = this.props.currentUser ? this.renderLogout() : (
-      <div className = "row"><div className="col-6">{this.renderLogin()}</div><div className="col-6">{this.renderCreate()}</div></div>)
+      <div className="row"><div className="col-6">{this.renderLogin()}</div><div className="col-6">{this.renderCreate()}</div></div>)
     return (<div><Navbar></Navbar> <div className="container container-2" id="login" >{show}</div></div>);
   }
 };
