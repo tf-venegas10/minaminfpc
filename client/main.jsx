@@ -5,7 +5,7 @@ import Home from "../imports/ui/Home/Home";
 import Teams from "../imports/ui/Teams/Teams";
 import Schedule from "../imports/ui/Schedule/Schedule";
 import H2H from "../imports/ui/H2H/H2H";
-// import Login from "../imports/ui/Login";
+import Login from "../imports/ui/Login";
 import NotFound from "../imports/ui/NotFound";
 import Navb from "../imports/ui/Navbar";
 import { Router, Route, Switch } from 'react-router';
@@ -21,7 +21,7 @@ Meteor.startup(() => {
         <Route exact path="/" component={Home} />
         <Route exact path="/teams" component={Teams} />
         <Route exact path="/h2h" component={H2H} />
-        {/* <Route exact path="/login" component={Login}/> */}
+        <Route exact path="/login" component={Login}/>
         <Route exact path='/schedule' component={Schedule} />
         <Route exact path='*' component={NotFound} />
       </Switch>
