@@ -13,8 +13,7 @@ export default class CircleProgress extends Component {
     }
 
    componentDidMount() {
-        const color = this.state.color;
-        const radius = 100;
+        const radius = 90;
         const border = 20;
         const padding = 30;
         const startPercent = 0;
@@ -56,26 +55,26 @@ export default class CircleProgress extends Component {
         
         meter.append('path')
             .attr('class', 'background')
-            .attr('fill', '#ccc')
+            .attr('fill', '#cccc')
             .attr('fill-opacity', 0.5)
             .attr('d', arc.endAngle(twoPi));
         
         let foreground = meter.append('path')
             .attr('class', 'foreground')
-            .attr('fill', color)
+            .attr('fill', this.props.color)
             .attr('fill-opacity', 1)
-            .attr('stroke', color)
+            .attr('stroke', this.props.color)
             .attr('stroke-width', 5)
             .attr('stroke-opacity', 1)
             .attr('filter', 'url(#blur)');
         
         let front = meter.append('path')
             .attr('class', 'foreground')
-            .attr('fill', color)
+            .attr('fill', this.props.color)
             .attr('fill-opacity', 1);
         
         let numberText = meter.append('text')
-            .attr('fill', '#132456')
+            .attr('fill', this.props.color)
             .attr('text-anchor', 'middle')
             .attr('dy', '.35em')
             .text(this.props.text);

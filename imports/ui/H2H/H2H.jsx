@@ -166,21 +166,24 @@ export default class H2H extends Component {
     let p6 = this.state.team2_data.draw / this.state.total_matches;;
     let p7 = this.state.team2_data.loss / this.state.total_matches;;
     let p8 = this.state.team2_data.total_goals / (this.state.team2_data.total_goals + this.state.team2_data.total_against);
+    let c1 = "#"+team_logos.logos[this.state.team1.id].color;
+    let c2 = "#"+team_logos.logos[this.state.team2.id].color;
+
     return (
       <div>
         <h2>{this.state.team1.name}</h2>
         <div className="row">
-          <div className="col-3"><CircleProgress percent={p1} text={t1} /></div>
-          <div className="col-3"><CircleProgress percent={p2} text={t2} /></div>
-          <div className="col-3"><CircleProgress percent={p3} text={t3} /></div>
-          <div className="col-3"><CircleProgress percent={p4} text={t4} /></div>
+          <div className="col-3"><CircleProgress percent={p1} text={t1} color={c1}/></div>
+          <div className="col-3"><CircleProgress percent={p2} text={t2} color={c1}/></div>
+          <div className="col-3"><CircleProgress percent={p3} text={t3} color={c1}/></div>
+          <div className="col-3"><CircleProgress percent={p4} text={t4} color={c1}/></div>
         </div>
         <h2>{this.state.team2.name}</h2>
         <div className="row">
-          <div className="col-3"><CircleProgress percent={p5} text={t5} /></div>
-          <div className="col-3"><CircleProgress percent={p6} text={t6} /></div>
-          <div className="col-3"><CircleProgress percent={p7} text={t7} /></div>
-          <div className="col-3"><CircleProgress percent={p8} text={t8} /></div>
+          <div className="col-3"><CircleProgress percent={p5} text={t5} color={c2}/></div>
+          <div className="col-3"><CircleProgress percent={p6} text={t6} color={c2}/></div>
+          <div className="col-3"><CircleProgress percent={p7} text={t7} color={c2}/></div>
+          <div className="col-3"><CircleProgress percent={p8} text={t8} color={c2}/></div>
         </div>
       </div>
     );

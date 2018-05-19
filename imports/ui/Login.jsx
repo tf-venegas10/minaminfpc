@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
 import { Accounts } from 'meteor/accounts-base';
+import { withTracker } from "meteor/react-meteor-data";
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 
-export default class Login extends Component {
+
+class Login extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      login: false,
-      create: false,
       name: "",
       email: "",
       password: "",
       username: "",
       team: "",
     };
+  }
+
+  static contextTypes = {
+    router: PropTypes.object
   }
 
   handleChangeName(e) {
@@ -42,13 +48,16 @@ export default class Login extends Component {
     }
     Accounts.createUser(options, (err) => {
       if (err) alert(err);
+      else this.context.router.history.push("/");
     });
   }
+
 
   handleLoginUser(event) {
     event.preventDefault();
     Meteor.loginWithPassword(this.state.username, this.state.password, (err) => {
       if (err) alert(err);
+      else this.context.router.history.push("/");
     });
   }
 
@@ -56,34 +65,6 @@ export default class Login extends Component {
     event.preventDefault();
     Meteor.logout((err) => {
       if (err) alert(err);
-    });
-    this.setState({
-      login: false,
-      create: false,
-    });
-  }
-
-  handleCancelUser(event) {
-    event.preventDefault();
-    this.setState({
-      login: false,
-      create: false,
-    });
-  }
-
-  enableCreate(event) {
-    event.preventDefault();
-    this.setState({
-      login: false,
-      create: true,
-    });
-  }
-
-  enableLogin(event) {
-    event.preventDefault();
-    this.setState({
-      login: true,
-      create: false,
     });
   }
 
@@ -171,3 +152,9 @@ export default class Login extends Component {
     return (<div className="container-fluid" id="login" >{show}</div>);
   }
 };
+
+export default withTracker(() => {
+  return {
+    currentUser: Meteor.user(),
+  };
+})(Login);
