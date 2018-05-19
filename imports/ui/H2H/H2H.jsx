@@ -3,6 +3,7 @@ import { Tasks } from '../../api/methods';
 import CircleProgress from "./CircleProgress";
 import team_logos from "../Home/Logos";
 import AutoS from "./AutoS";
+import { Jumbotron } from "react-bootstrap";
 
 export default class H2H extends Component {
 
@@ -48,7 +49,11 @@ export default class H2H extends Component {
     let list = this.state.teams;
     let id = "";
     if (list.length > 0) {
-      return <AutoS events={list} setTeam={this.setTeam1.bind(this)} />
+      return (
+        <div>
+          <h3> Selecciona el primer equipo a comparar:</h3>
+          <AutoS events={list} setTeam={this.setTeam1.bind(this)} />
+        </div>);
     }
   }
 
@@ -56,7 +61,11 @@ export default class H2H extends Component {
     let list = this.state.teams;
     let id = "";
     if (list.length > 0) {
-      return <AutoS events={list} setTeam={this.setTeam2.bind(this)} />
+      return (
+        <div>
+          <h3> Selecciona el segundo equipo a comparar:</h3>
+          <AutoS events={list} setTeam={this.setTeam2.bind(this)} />
+        </div>);
     }
   }
 
@@ -166,24 +175,24 @@ export default class H2H extends Component {
     let p6 = this.state.team2_data.draw / this.state.total_matches;;
     let p7 = this.state.team2_data.loss / this.state.total_matches;;
     let p8 = this.state.team2_data.total_goals / (this.state.team2_data.total_goals + this.state.team2_data.total_against);
-    let c1 = "#"+team_logos.logos[this.state.team1.id].color;
-    let c2 = "#"+team_logos.logos[this.state.team2.id].color;
+    let c1 = "#" + team_logos.logos[this.state.team1.id].color;
+    let c2 = "#" + team_logos.logos[this.state.team2.id].color;
 
     return (
       <div>
-        <h2>{this.state.team1.name}</h2>
+        <h2 align="center"><img className="h2h-logo" src={team_logos.logos[this.state.team1.id].src} alt={team_logos.logos[this.state.team1.id].alt} />{this.state.team1.name}</h2>
         <div className="row">
-          <div className="col-3"><CircleProgress percent={p1} text={t1} color={c1}/></div>
-          <div className="col-3"><CircleProgress percent={p2} text={t2} color={c1}/></div>
-          <div className="col-3"><CircleProgress percent={p3} text={t3} color={c1}/></div>
-          <div className="col-3"><CircleProgress percent={p4} text={t4} color={c1}/></div>
+          <div className="col-3"><CircleProgress percent={p1} text={t1} color={c1} /></div>
+          <div className="col-3"><CircleProgress percent={p2} text={t2} color={c1} /></div>
+          <div className="col-3"><CircleProgress percent={p3} text={t3} color={c1} /></div>
+          <div className="col-3"><CircleProgress percent={p4} text={t4} color={c1} /></div>
         </div>
-        <h2>{this.state.team2.name}</h2>
+        <h2 align="center"><img className="h2h-logo" src={team_logos.logos[this.state.team2.id].src} alt={team_logos.logos[this.state.team2.id].alt} />{this.state.team2.name}</h2>
         <div className="row">
-          <div className="col-3"><CircleProgress percent={p5} text={t5} color={c2}/></div>
-          <div className="col-3"><CircleProgress percent={p6} text={t6} color={c2}/></div>
-          <div className="col-3"><CircleProgress percent={p7} text={t7} color={c2}/></div>
-          <div className="col-3"><CircleProgress percent={p8} text={t8} color={c2}/></div>
+          <div className="col-3"><CircleProgress percent={p5} text={t5} color={c2} /></div>
+          <div className="col-3"><CircleProgress percent={p6} text={t6} color={c2} /></div>
+          <div className="col-3"><CircleProgress percent={p7} text={t7} color={c2} /></div>
+          <div className="col-3"><CircleProgress percent={p8} text={t8} color={c2} /></div>
         </div>
       </div>
     );
@@ -197,6 +206,11 @@ export default class H2H extends Component {
     return (
       <div className="h2h">
         <div className="container-fluid">
+          <div>
+            <Jumbotron>
+              <p> Compara el rendimiento de dos equipos del Fútbol Profesional Colombiano, desde 2006 hasta la fecha. </p>
+            </Jumbotron>
+          </div>
           <div className="row">
             <div className="col-sm-6">{this.renderTeams1()}</div>
             <div className="col-sm-6">{this.renderTeams2()}</div>
@@ -206,4 +220,4 @@ export default class H2H extends Component {
       </div>
     );
   }
-}
+};

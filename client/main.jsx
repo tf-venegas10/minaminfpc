@@ -25,7 +25,7 @@ Meteor.startup(() => {
         <Route exact path="/login" component={Login}/>
         <Route exact path='/schedule' component={Schedule} />
         <Route exact path='/about' component={About} />
-        <Route exact path='*' component={NotFound} />
+        <Route path='*' component={NotFound} />
       </Switch>
     </Router>
   </div>

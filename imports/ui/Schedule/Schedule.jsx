@@ -164,9 +164,14 @@ export default class Schedule extends Component {
     let defaultOption = options[0];
 
     return (
-      <div>
-        <h6>Jornada</h6>
-        <Dropdown options={options} onChange={this._onSelect.bind(this)} value={defaultOption} placeholder={defaultOption} />
+      <div className="schedule">
+        <div className="row headerSch">
+          <div className="col-md-7">
+            <h4 align="center">Jornada:</h4>
+          </div>
+          <div className="col-md-5"><Dropdown options={options} onChange={this._onSelect.bind(this)} value={defaultOption} placeholder={defaultOption} />
+          </div>
+        </div>
         <div className="row">
           <div className="col-md-12">
             <table className="home-table table" >

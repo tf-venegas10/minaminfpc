@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Accounts } from 'meteor/accounts-base';
 import { withTracker } from "meteor/react-meteor-data";
-import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-
 
 class Login extends Component {
 
