@@ -9,7 +9,7 @@ Minuto a Minuto FPC es una aplicación web que permite visualizar diferentes est
 
 # Desarrollo
 Para trabajar sobre la aplicación se deben seguir varios 5 pasos. 
-1. Colar el repositorio:
+1. Clonar el repositorio:
    ```$ git clone https://github.com/jc-bustamante143/minaminfpc.git```
 1. Se debe tener instalado [Meteor.js](https://www.meteor.com/install). 
 2. Se debe solicitar una llave a [Sportradar](https://developer.sportradar.com/).
