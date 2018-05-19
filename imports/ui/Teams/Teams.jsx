@@ -179,19 +179,81 @@ export default class Teams extends Component {
     );
   }
 
+  renderPosHistory() {
+    const data = this.state.profile.statistics.seasons.filter((s) => s.name.startsWith("Copa Mustang") || s.name.startsWith("Liga Postobon") || s.name.startsWith("Primera A") || s.name.startsWith("Primera B") || s.name.startsWith("Torneo Postobon"));
+    var svg = d3.select(this.svg),
+      margin = {top: 20, right: 20, bottom: 150, left: 40},
+      width = +svg.attr("width") - margin.left - margin.right,
+      height = +svg.attr("height") - margin.top - margin.bottom;
+
+    svg.selectAll("*").remove();
+
+    var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
+        y = d3.scaleLinear().rangeRound([1, height]);
+
+    var g = svg.append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      x.domain(data.map(function(d) { return d.name; }));
+      y.domain([1, 20]);
+
+      g.append("g")
+          .attr("class", "axis axis--x")
+          .attr("transform", "translate(0," + height + ")")
+          .call(d3.axisBottom(x));
+
+      g.selectAll("text")
+          .attr("transform", "rotate(-45) translate(-45)");
+
+      g.append("g")
+          .attr("class", "axis axis--y")
+          .call(d3.axisLeft(y).ticks(20))
+        .append("text")
+          .attr("transform", "rotate(-90)")
+          .attr("y", 6)
+          .attr("dy", "0.71em")
+          .attr("text-anchor", "end")
+          .text("Posicion");
+
+      var strokeColor = team_logos.logos[this.state.profile.team.id].color === "fff" ? "000" : "fff";
+
+      console.log(team_logos.logos[this.state.profile.team.id].color);
+
+      g.selectAll(".bar")
+        .data(data)
+        .enter().append("rect")
+          .attr("class", "bar")
+          .attr("x", function(d) { return x(d.name); })
+          .attr("y", function(d) { return y(d.statistics.group_position); })
+          .attr("width", x.bandwidth())
+          .attr("height", function(d) { return height - y(d.statistics.group_position); })
+          .style("fill", team_logos.logos[this.state.profile.team.id].color)
+          .style("stroke", strokeColor);
+  } 
+
   render() {
     const header = this.state.selected ? <h1>Has seleccionado {this.state.profile.team.name}</h1> : <h1>Selecciona tu equipo favorito</h1>
     const info = this.state.selected ? this.renderInfo() : <div></div>;
+    if (this.state.selected) this.renderPosHistory();
     return (
       <div className="teams container-fluid">
         <div className="col-md-6">
           <div className="row">{header}</div>
           <div className="row" >
-            <canvas  id="network" width="700" height="650" ref={(canvas) => this.canvas = canvas} ></canvas>
+            <canvas  id="network" width="700" height="700" ref={(canvas) => this.canvas = canvas} ></canvas>
           </div>
         </div>
         <div className="col-md-6">
           {info}
+          <div className="row">
+            <div className="col-md-12">
+              <svg 
+                width="700" 
+                height="400" 
+                ref={(svg) => this.svg = svg} 
+              ></svg>
+            </div>
+          </div>
         </div>
       </div>
     );

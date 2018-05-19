@@ -22,3 +22,7 @@
 .circ{
   margin: 0px 25px;
 }
+
+.axis--x path {
+  display: none;
+}
