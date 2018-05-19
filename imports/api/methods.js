@@ -20,7 +20,7 @@ if (Meteor.isServer) {
   Meteor.methods({
     'tournaments.info' () {
       try {
-        let url = "http://api.sportradar.us/soccer-t3/am/en/tournaments/sr:tournament:241/info.json?api_key=95vqfkug68ytss77qbwskwta";
+        let url = "http://api.sportradar.us/soccer-t3/am/en/tournaments/sr:tournament:241/info.json?api_key=may4yfedydgtvpr46f3sj3ab";
         let result = HTTP.get(url).data;
         return result;
       } catch (error) {
@@ -29,7 +29,7 @@ if (Meteor.isServer) {
     },
     'tournament.live_standings' () {
       try {
-        let url = "http://api.sportradar.us/soccer-t3/am/en/tournaments/sr:tournament:241/live_standings.json?api_key=95vqfkug68ytss77qbwskwta";
+        let url = "http://api.sportradar.us/soccer-t3/am/en/tournaments/sr:tournament:241/live_standings.json?api_key=may4yfedydgtvpr46f3sj3ab";
         let result = HTTP.get(url).data;
         return result;
       } catch (error) {
@@ -38,7 +38,7 @@ if (Meteor.isServer) {
     },
     'tournament.leaders' () {
       try {
-        let url = "http://api.sportradar.us/soccer-t3/am/en/tournaments/sr:tournament:241/leaders.json?api_key=95vqfkug68ytss77qbwskwta";
+        let url = "http://api.sportradar.us/soccer-t3/am/en/tournaments/sr:tournament:241/leaders.json?api_key=may4yfedydgtvpr46f3sj3ab";
         let result = HTTP.get(url).data;
         return result;
       } catch (error) {
@@ -48,7 +48,7 @@ if (Meteor.isServer) {
     'teams.h2h' (team1, team2) {
       if (team1 != team2) {
         try {
-          let url = "http://api.sportradar.us/soccer-t3/am/en/teams/" + team1 + "/versus/" + team2 + "/matches.json?api_key=95vqfkug68ytss77qbwskwta";
+          let url = "http://api.sportradar.us/soccer-t3/am/en/teams/" + team1 + "/versus/" + team2 + "/matches.json?api_key=may4yfedydgtvpr46f3sj3ab";
           let result = HTTP.get(url).data;
           return result;
         } catch (error) {
@@ -58,7 +58,7 @@ if (Meteor.isServer) {
     },
     'tournament.results' () {
       try {
-        let url = "http://api.sportradar.us/soccer-t3/am/en/tournaments/sr:tournament:241/results.json?api_key=95vqfkug68ytss77qbwskwta";
+        let url = "http://api.sportradar.us/soccer-t3/am/en/tournaments/sr:tournament:241/results.json?api_key=may4yfedydgtvpr46f3sj3ab";
         let result = HTTP.get(url).data;
         return result;
       } catch (error) {
@@ -67,7 +67,7 @@ if (Meteor.isServer) {
     },
     'match.odds' (match) {
       try {
-        let url = "https://api.sportradar.us/soccer-t3/am/en/matches/"+match+"/probabilities.json?api_key=95vqfkug68ytss77qbwskwta";
+        let url = "https://api.sportradar.us/soccer-t3/am/en/matches/"+match+"/probabilities.json?api_key=may4yfedydgtvpr46f3sj3ab";
         let result = HTTP.get(url).data;
         return result;
       } catch (error) {
@@ -76,7 +76,7 @@ if (Meteor.isServer) {
     },
     'tournament.schedule' () {
       try {
-        let url = "http://api.sportradar.us/soccer-t3/am/en/tournaments/sr:tournament:241/schedule.json?api_key=95vqfkug68ytss77qbwskwta";
+        let url = "http://api.sportradar.us/soccer-t3/am/en/tournaments/sr:tournament:241/schedule.json?api_key=may4yfedydgtvpr46f3sj3ab";
         let result = HTTP.get(url).data;
         return result;
       } catch (error) {
@@ -85,7 +85,7 @@ if (Meteor.isServer) {
     },
     'tournament.team_profile' (team) {
       try {
-        let url = "https://api.sportradar.us/soccer-t3/am/en/teams/" + team + "/profile.json?api_key=95vqfkug68ytss77qbwskwta";
+        let url = "https://api.sportradar.us/soccer-t3/am/en/teams/" + team + "/profile.json?api_key=may4yfedydgtvpr46f3sj3ab";
         let result = HTTP.get(url).data;
         return result;
       } catch (error) {
@@ -94,7 +94,7 @@ if (Meteor.isServer) {
     },
     'tournament.team_statistics' (team) {
       try {
-        let url = "https://api.sportradar.us/soccer-t3/am/en/tournaments/sr:tournament:241/teams/" + team + "/statistics.json?api_key=95vqfkug68ytss77qbwskwta";
+        let url = "https://api.sportradar.us/soccer-t3/am/en/tournaments/sr:tournament:241/teams/" + team + "/statistics.json?api_key=may4yfedydgtvpr46f3sj3ab";
         let result = HTTP.get(url).data;
         return result;
       } catch (error) {

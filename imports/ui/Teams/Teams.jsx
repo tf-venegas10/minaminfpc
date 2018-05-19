@@ -14,32 +14,14 @@ export default class Teams extends Component {
     this.state = {
       selected: false,
       profile: {},
+      svg: false,
     };
   }
-
-      // Meteor.call('tournament.team_profile',(err,res) => {
-    //   console.log(res);
-    //   if (err) throw err;
-    //   this.setState ({
-    //     profile: res,
-    //   }); 
-    // });
 
   componentDidMount() {
     if (!TeamList.teams || TeamList.teams.length !== 21) return;
 
     var click = this.onClickTeam.bind(this);
-
-    // let linksArray = [];
-
-    // for (let i = 0; i < TeamList.teams.length; i++) {
-    //   let obj = {
-    //     source: TeamList.teams[0].id,
-    //     target: TeamList.teams[i].id,
-    //   };
-    //   console.log(obj, i, TeamList.teams[i].id);
-    //   linksArray.push(obj);
-    // }
 
     var canvas = d3.select("#network"),
           width = canvas.attr("width"),
@@ -51,11 +33,8 @@ export default class Teams extends Component {
             .force("collide", d3.forceCollide(60))
             .force("charge", d3.forceManyBody().strength(-500))
             .on("tick", update);
-            //.force("link", d3.forceLink()
-              //.id(function(d) { return d.id; }));
 
     simulation.nodes(TeamList.teams);
-   // simulation.force("link").links(linksArray);
 
     canvas
       .call(d3.drag()
@@ -83,7 +62,6 @@ export default class Teams extends Component {
     }
 
     function clickTeam(id) {
-      console.log("entre");
       click(id);
     }
 
@@ -106,13 +84,15 @@ export default class Teams extends Component {
     }
 
     function drawNode(d) {
-      let r = 3*d.titles + 50;
-      let img = new Image();
-      img.src = d.src;
-      img.alt = d.alt;
-      ctx.moveTo(d.x, d.y);
-      if (d.id === "vamos millos") r = 1;
-      ctx.drawImage(img, d.x - r/2, d.y - r/2, r, r*1.3); 
+      let r = 1;
+      if (d.id !== "vamos millos") {
+        r = 3*d.titles + 50;
+        let img = new Image();
+        img.src = d.src;
+        img.alt = d.alt;
+        ctx.moveTo(d.x, d.y);
+        ctx.drawImage(img, d.x - r/2, d.y - r/2, r, r*1.3); 
+      }
     }
 
     function drawLinks() {
@@ -121,12 +101,9 @@ export default class Teams extends Component {
         ctx.lineTo(d.x, d.y);
       })
     }
-
-    //update();
   }
 
   onClickTeam(t) {
-    console.log(t);
     if (t === "vamos millos") return;
     Meteor.call('tournament.team_profile', t, (err,res) => {
       if (err) throw err;
@@ -141,7 +118,7 @@ export default class Teams extends Component {
     return (
       <div>
         <div className="row">
-          <h1>Información de {this.state.profile.team.name}</h1>
+          <h1>Información</h1>
         </div>
         <div className="row" >
           <div className="col-md-4">
@@ -150,28 +127,30 @@ export default class Teams extends Component {
           <div className="col-md-8">
             <div className="row">
               <div className="col-md-12">
-                <h4>{this.state.profile.team.name}</h4>
+                <h3>{this.state.profile.team.name}</h3>
               </div>
             </div>
             <div className="row">
-              <div className="col-md-12">
-                <h4>Ciudad: {this.state.profile.venue.city_name}</h4>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-12">
-                <h4>Estadio: {this.state.profile.venue.name}</h4>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-12">
-                <h4>Títulos de Liga: {team_logos.logos[this.state.profile.team.id].titles}</h4>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-12">
-                <h4>DT: {this.state.profile.manager.name} ({this.state.profile.manager.country_code})</h4>
-              </div>
+              <table>
+                <tbody>
+                  <tr>
+                    <td className="text-center table-cell bold-text" style={{background: "#" + team_logos.logos[this.state.profile.team.id].color, color: "#" + team_logos.logos[this.state.profile.team.id].secondary_color}} >Ciudad</td>
+                    <td className="text-center table-cell bold-text" style={{background: "#" + team_logos.logos[this.state.profile.team.id].color, color: "#" + team_logos.logos[this.state.profile.team.id].secondary_color}} >{this.state.profile.venue.city_name}</td>
+                  </tr>
+                  <tr>
+                    <td className="text-center table-cell bold-text" style={{background: "#" + team_logos.logos[this.state.profile.team.id].color, color: "#" + team_logos.logos[this.state.profile.team.id].secondary_color}}>Estadio</td>
+                    <td className="text-center table-cell bold-text" style={{background: "#" + team_logos.logos[this.state.profile.team.id].color, color: "#" + team_logos.logos[this.state.profile.team.id].secondary_color}}>{this.state.profile.venue.name}</td>
+                  </tr>
+                  <tr>
+                    <td className="text-center table-cell bold-text" style={{background: "#" + team_logos.logos[this.state.profile.team.id].color, color: "#" + team_logos.logos[this.state.profile.team.id].secondary_color}}>Estrellas</td>
+                    <td className="text-center table-cell bold-text" style={{background: "#" + team_logos.logos[this.state.profile.team.id].color, color: "#" + team_logos.logos[this.state.profile.team.id].secondary_color}}>{team_logos.logos[this.state.profile.team.id].titles}</td>
+                  </tr>
+                  <tr>
+                    <td className="text-center table-cell bold-text" style={{background: "#" + team_logos.logos[this.state.profile.team.id].color, color: "#" + team_logos.logos[this.state.profile.team.id].secondary_color}}>Director Técnico</td>
+                    <td className="text-center table-cell bold-text" style={{background: "#" + team_logos.logos[this.state.profile.team.id].color, color: "#" + team_logos.logos[this.state.profile.team.id].secondary_color}}>{this.state.profile.manager.name} ({this.state.profile.manager.country_code})</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -217,8 +196,6 @@ export default class Teams extends Component {
 
       var strokeColor = team_logos.logos[this.state.profile.team.id].color === "fff" ? "000" : "fff";
 
-      console.log(team_logos.logos[this.state.profile.team.id].color);
-
       g.selectAll(".bar")
         .data(data)
         .enter().append("rect")
@@ -229,11 +206,22 @@ export default class Teams extends Component {
           .attr("height", function(d) { return height - y(d.statistics.group_position); })
           .style("fill", team_logos.logos[this.state.profile.team.id].color)
           .style("stroke", strokeColor);
-  } 
+  }
+  
+  renderPlayers() {
+    
+  }
 
   render() {
     const header = this.state.selected ? <h1>Has seleccionado {this.state.profile.team.name}</h1> : <h1>Selecciona tu equipo favorito</h1>
     const info = this.state.selected ? this.renderInfo() : <div></div>;
+    let players = <div></div>;
+    let svgHeader = <h2>Posición en las últimas temporadas</h2>;
+    if (!this.state.svg) {
+      svgHeader = <div></div>;
+      d3.select(this.svg).selectAll("*").remove();
+      players = this.renderPlayers();
+    }
     if (this.state.selected) this.renderPosHistory();
     return (
       <div className="teams container-fluid">
