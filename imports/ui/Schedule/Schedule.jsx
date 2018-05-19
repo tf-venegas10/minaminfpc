@@ -174,7 +174,7 @@ export default class Schedule extends Component {
         </div>
         <div className="row">
           <div className="col-md-12">
-            <table className="home-table table" >
+            <table className="home-table table table table-striped table-bordered table-hover table-sm" >
               {this.renderTableHeader()}
               <tbody>
                 {body}

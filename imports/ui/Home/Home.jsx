@@ -22,7 +22,6 @@ export default class Home extends Component {
       assists: [],
       cards: [],
       own_goals: [],
-      //Falta mirar playoffs
     } 
   }
 
@@ -144,7 +143,6 @@ export default class Home extends Component {
         </tr> 
       ); 
     }
-    //Falta playoffs
   }
 
   renderTableHeader() {
@@ -210,22 +208,6 @@ export default class Home extends Component {
       else return <thead></thead>;
   }
 
-  renderPlayoffs() {
-    if (this.state.playoffs) return;
-    return (
-      <div className="llaves">
-        <table className="playoffs-table-1" >
-          <tbody>
-            <tr>
-              <td>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    );
-  }
-
   _onSelect(opt) {
     if (opt.value === "Total") this.setState({view: "total"});
     else if (opt.value === "Local") this.setState({view: "home"});
@@ -262,34 +244,28 @@ export default class Home extends Component {
     else if (this.state.view === "home") defaultOption = options[1]
     else defaultOption = options[2];
 
-    const drpdwn = this.state.main_view === "table" ? <div className="col-md-4"><h6>Local/Visitante</h6><Dropdown options={options} onChange={this._onSelect.bind(this)} value={defaultOption} placeholder={defaultOption} /></div> : "";
+    const drpdwn = this.state.main_view === "table" ? <div className="col-md-4"><h4>Local/Visitante:</h4><Dropdown options={options} onChange={this._onSelect.bind(this)} value={defaultOption} placeholder={defaultOption} /></div> : "";
 
     return (
       <div className="home container">
         <div className="row">
           <div className="col-md-8">
-            <button type="button" className="btn btn-lg btn-link table-options" onClick={this.onClickTable.bind(this)} >Tabla</button>
-            <button type="button" className="btn btn-lg btn-link table-options" onClick={this.onClickPlayoffs.bind(this)}>Playoffs</button>
-            <button type="button" className="btn btn-lg btn-link table-options" onClick={this.onClickTopScorers.bind(this)}>Goleadores</button>
-            <button type="button" className="btn btn-lg btn-link table-options" onClick={this.onClickAssists.bind(this)}>Asistencias</button>
-            <button type="button" className="btn btn-lg btn-link table-options" onClick={this.onClickCards.bind(this)}>Tarjetas</button>
-            <button type="button" className="btn btn-lg btn-link table-options" onClick={this.onClickOwnGoals.bind(this)}>Autogoles</button>
+            <button type="button" className="btn btn-link table-options" onClick={this.onClickTable.bind(this)} >Tabla</button>
+            <button type="button" className="btn btn-link table-options" onClick={this.onClickTopScorers.bind(this)}>Goleadores</button>
+            <button type="button" className="btn btn-link table-options" onClick={this.onClickAssists.bind(this)}>Asistencias</button>
+            <button type="button" className="btn btn-link table-options" onClick={this.onClickCards.bind(this)}>Tarjetas</button>
+            <button type="button" className="btn btn-link table-options" onClick={this.onClickOwnGoals.bind(this)}>Autogoles</button>
           </div>
           {drpdwn}
         </div>
-        <div className="row">
+        <div className="row le_tabla">
           <div className="col-md-12">
-            <table className="home-table table" >
+            <table className="home-table table table table-striped table-bordered table-hover table-sm" >
               {this.renderTableHeader()}
               <tbody>
                 {this.renderTable()}
               </tbody>
             </table>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-md-12">
-            {this.renderPlayoffs()}
           </div>
         </div>
       </div>

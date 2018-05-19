@@ -23,8 +23,13 @@
   padding-right: 10px;
 }
 
-.table-options {
-  font-size: 25px;
+button.table-options {
+  font-size: 20px;
+  margin-right: 20px;
+}
+
+.table-options:hover{
+  /*box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);*/
 }
 
 .node-image {
@@ -52,9 +57,25 @@ td.table-cell {
   max-width: 350px;
   max-height: 30px;
   font-size: 16px;
-  /*color: white;*/
 }
 
 .bold-text {
   font-weight: bold;
+}
+
+.btn-info {
+  margin-top: 10px;
+  margin-right: 2px;
+}
+
+.btn-info:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.le_tabla {
+  margin-top: 10px;
+}
+
+nav.customNav {
+  background: #000;
 }

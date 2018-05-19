@@ -15,6 +15,7 @@ export default class Teams extends Component {
       selected: false,
       profile: {},
       svg: false,
+      players: false,
     };
   }
 
@@ -209,12 +210,71 @@ export default class Teams extends Component {
   }
   
   renderPlayers() {
-    
+    if (this.state.players) {
+      return (
+        <div>
+          <h2>Jugadores</h2>
+          <table className="table table-striped table-bordered table-hover table-sm">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Jugador</th>
+                <th>Nacionalidad</th>
+                <th>No. Camiseta</th>
+                <th>Posicion</th>
+                <th>Altura (cm)</th>
+                <th>Fecha de nacimiento</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.profile.players.map((p, i) => {
+                let pos = "";
+                if(p.type === "goalkeeper") pos = "Arquero";
+                else if (p.type === "defender") pos = "Defensa";
+                else if (p.type === "midfielder") pos = "Mediocampista"
+                else if (p.type === "forward") pos = "Delantero";
+                return (
+                  <tr key={p.id}>
+                    <td>{i + 1}</td>
+                    <td>{p.name}</td>
+                    <td>{p.country_code}</td>
+                    <td>{p.jersey_number}</td>
+                    <td>{pos}</td>
+                    <td>{p.height}</td>
+                    <td>{p.date_of_birth}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+  }
+
+  onClickPlayers() {
+    if (!this.state.selected) return;
+    this.setState({
+      svg: false,
+      players: true,
+    });
+  }
+
+  onClickResults() {
+    if (!this.state.selected) return;
+    this.setState({
+      svg: true,
+      players: false,
+    });
   }
 
   render() {
     const header = this.state.selected ? <h1>Has seleccionado {this.state.profile.team.name}</h1> : <h1>Selecciona tu equipo favorito</h1>
     const info = this.state.selected ? this.renderInfo() : <div></div>;
+    const buttons = this.state.selected ? <div className="row justify-content-center align-items-center">
+                                            <button type="button" className="btn btn-info" onClick={this.onClickResults.bind(this)} style={{background: "#" + team_logos.logos[this.state.profile.team.id].color, color: "#" + team_logos.logos[this.state.profile.team.id].secondary_color}}>Ver Resultados Pasados</button>
+                                            <button type="button" className="btn btn-info" onClick={this.onClickPlayers.bind(this)} style={{background: "#" + team_logos.logos[this.state.profile.team.id].color, color: "#" + team_logos.logos[this.state.profile.team.id].secondary_color}}>Ver Jugadores</button>
+                                          </div> : <div></div>;
     let players = <div></div>;
     let svgHeader = <h2>Posición en las últimas temporadas</h2>;
     if (!this.state.svg) {
@@ -222,7 +282,7 @@ export default class Teams extends Component {
       d3.select(this.svg).selectAll("*").remove();
       players = this.renderPlayers();
     }
-    if (this.state.selected) this.renderPosHistory();
+    if (this.state.selected && this.state.svg) this.renderPosHistory();
     return (
       <div className="teams container-fluid">
         <div className="col-md-6">
@@ -233,6 +293,13 @@ export default class Teams extends Component {
         </div>
         <div className="col-md-6">
           {info}
+          {buttons}
+          <div className="row">
+            {players}
+          </div>
+          <div className="row">
+            {svgHeader}
+          </div>
           <div className="row">
             <div className="col-md-12">
               <svg 
