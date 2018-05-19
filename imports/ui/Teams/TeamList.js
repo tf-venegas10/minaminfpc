@@ -1,6 +1,9 @@
 export default TeamList = {
     teams: [
         {
+            id: "vamos millos",
+        },
+        {
             id:"sr:competitor:6106",
             src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Escudo_Atl%C3%A9tico_Nacional.png/220px-Escudo_Atl%C3%A9tico_Nacional.png",
             alt: "Logo de Atlético Nacional de Medellín",
@@ -37,7 +40,7 @@ export default TeamList = {
             titles: 9,
         },
         {
-            id:"sr:competitor:6106",
+            id:"sr:competitor:61504",
             src: "https://vignette.wikia.nocookie.net/fifa/images/f/ff/LogoforPatriotas..png/revision/latest?cb=20161208183143",
             alt: "Logo de Patriotas",
             titles: 0,

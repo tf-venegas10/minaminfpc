@@ -9,22 +9,12 @@
   font-size: 25px;
 }
 
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
+.node-image {
+  max-width: 70px;
+  max-height: 70px;
 }
 
-.axis text {
-  font: 10px sans-serif;
-}
-
-.cells path {
-  fill: none;
-  pointer-events: all;
-}
-
-.cells :hover circle {
-  fill: red;
+.info-img {
+  max-width: 200px;
+  max-height: 200px;
 }
