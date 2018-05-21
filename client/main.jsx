@@ -11,6 +11,10 @@ import NotFound from "../imports/ui/NotFound";
 import Navb from "../imports/ui/Navbar";
 import { Router, Route, Switch } from 'react-router';
 import createBrowserHistory from 'history/createBrowserHistory';
+/**
+*Tomas Vengas
+* Falta el atributo lang para mejorar la accesibilidad
+**/
 
 Meteor.startup(() => {
   const browserHistory = createBrowserHistory();
@@ -30,4 +34,5 @@ Meteor.startup(() => {
     </Router>
   </div>
     , document.getElementById("render-target"));
+   $('html').attr('lang', 'es');
 });
