@@ -46,6 +46,9 @@ if (Meteor.isServer) {
       }
     },
     'teams.h2h' (team1, team2) {
+      /*
+      Tomas Venegas: faltan los check() para las variables por seguridad
+      */
       if (team1 != team2) {
         try {
           let url = "http://api.sportradar.us/soccer-t3/am/en/teams/" + team1 + "/versus/" + team2 + "/matches.json?api_key=may4yfedydgtvpr46f3sj3ab";
@@ -66,6 +69,9 @@ if (Meteor.isServer) {
       }
     },
     'match.odds' (match) {
+       /*
+      Tomas Venegas: faltan los check() para las variables por seguridad
+      */
       try {
         let url = "https://api.sportradar.us/soccer-t3/am/en/matches/"+match+"/probabilities.json?api_key=may4yfedydgtvpr46f3sj3ab";
         let result = HTTP.get(url).data;
@@ -84,6 +90,9 @@ if (Meteor.isServer) {
       }
     },
     'tournament.team_profile' (team) {
+       /*
+      Tomas Venegas: faltan los check() para las variables por seguridad
+      */
       try {
         let url = "https://api.sportradar.us/soccer-t3/am/en/teams/" + team + "/profile.json?api_key=may4yfedydgtvpr46f3sj3ab";
         let result = HTTP.get(url).data;
@@ -93,6 +102,9 @@ if (Meteor.isServer) {
       }
     },
     'tournament.team_statistics' (team) {
+       /*
+      Tomas Venegas: faltan los check() para las variables por seguridad
+      */
       try {
         let url = "https://api.sportradar.us/soccer-t3/am/en/tournaments/sr:tournament:241/teams/" + team + "/statistics.json?api_key=may4yfedydgtvpr46f3sj3ab";
         let result = HTTP.get(url).data;
