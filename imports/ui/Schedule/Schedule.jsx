@@ -164,12 +164,13 @@ export default class Schedule extends Component {
     let defaultOption = options[0];
 
     return (
+      {/* Tomas Venegas: Deberían hacer otra asignación a las columnas de bootstrap con col y col-sm para que funcione mejor en pantallas pequeñas*/}
       <div className="schedule">
         <div className="row headerSch">
-          <div className="col-md-7">
+          <div className="col-md-7 col-5">
             <h4 align="center">Jornada:</h4>
           </div>
-          <div className="col-md-5"><Dropdown options={options} onChange={this._onSelect.bind(this)} value={defaultOption} placeholder={defaultOption} />
+          <div className="col-md-5 col-7"><Dropdown options={options} onChange={this._onSelect.bind(this)} value={defaultOption} placeholder={defaultOption} />
           </div>
         </div>
         <div className="row">
